@@ -23,6 +23,9 @@ import ApplicationReturnedApplicantEmail from "../emails/onboarding/application-
 import ApplicationReturnedApproverEmail from "../emails/onboarding/application-returned-approver.js";
 import KycCompletedEmail from "../emails/onboarding/kyc-completed.js";
 import OtpEmail from "../emails/onboarding/otp.js";
+import OpenAdditionalMcaEmail from "../emails/account/open-additional-MCA.js";
+import BeneficiaryAccCreditedEmail from "../emails/payment/beneficiary-acc-credited.js";
+import DebitedSuccessEmail from "../emails/payment/debited-success.js";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, "..");
@@ -48,6 +51,15 @@ const templates = [
     element: <ApplicationCancelledApplicantEmail />,
   },
   { name: "onboarding/otp", element: <OtpEmail /> },
+  {
+    name: "account/open-additional-MCA",
+    element: <OpenAdditionalMcaEmail />,
+  },
+  { name: "payment/debited-success", element: <DebitedSuccessEmail /> },
+  {
+    name: "payment/beneficiary-acc-credited",
+    element: <BeneficiaryAccCreditedEmail />,
+  },
 ];
 
 mkdirSync(outDir, { recursive: true });

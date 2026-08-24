@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+
 import { emphasis, paragraph, textBase } from "./layout.js";
 
 /**
@@ -27,25 +29,41 @@ export function Table({ rows }: { rows: readonly Row[] }) {
               style={{ width: "100%", borderCollapse: "collapse" }}
             >
               <tbody>
-                {rows.map((r, i) => {
-                  // The card border closes the group, so rules sit between rows only.
-                  const edge = i === 0 ? null : rule;
-                  return (
-                    <tr key={r.label}>
-                      <td style={{ ...labelCell, ...edge }}>{r.label}</td>
-                      <td style={{ ...valueCell, ...edge }}>
+                {rows.map((r, i) => (
+                  <Fragment key={r.label}>
+                    {/* The card border closes the group, so rules sit between rows only. */}
+                    {i > 0 ? <TableDivider /> : null}
+                    <tr>
+                      <td style={labelCell}>{r.label}</td>
+                      <td style={valueCell}>
                         <span style={emphasis}>{r.value}</span>
                         {r.sub ? <div style={subText}>{r.sub}</div> : null}
                       </td>
                     </tr>
-                  );
-                })}
+                  </Fragment>
+                ))}
               </tbody>
             </table>
           </td>
         </tr>
       </tbody>
     </table>
+  );
+}
+
+/**
+ * Dashed rule between table rows. Spans the card's padded content width, so it
+ * sits 16px inside the rounded border on both sides — matching the frame.
+ *
+ * Drawn as a border on a zero-height `<td>` rather than a nested `<div>`: an
+ * empty block element inside a table cell picks up a line-box in Outlook and
+ * shows as a thick gap instead of a hairline.
+ */
+export function TableDivider() {
+  return (
+    <tr>
+      <td colSpan={2} style={dividerCell} />
+    </tr>
   );
 }
 
@@ -61,8 +79,14 @@ const card: React.CSSProperties = {
 
 const cardInner: React.CSSProperties = { padding: "8px 16px" };
 
-/** Figma divider: #000932 at 12.16%, dashed. */
-const rule: React.CSSProperties = { borderTop: "1px dashed #dddee3" };
+/** Figma divider: #000932 at 12.16% over the panel, dashed. */
+const dividerCell: React.CSSProperties = {
+  borderTop: "1px dashed #dddee3",
+  height: 1,
+  padding: 0,
+  fontSize: 1,
+  lineHeight: "1px",
+};
 
 const labelCell: React.CSSProperties = {
   ...paragraph,

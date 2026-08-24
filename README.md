@@ -4,22 +4,6 @@ DK Bank transactional email templates, built with
 [React Email](https://react.email). Each template renders to a static HTML file
 in `out/` for the sending service to use.
 
-| Template                                                                   | Source                                       | Figma node  |
-| -------------------------------------------------------------------------- | -------------------------------------------- | ----------- |
-| "Form Approved" — company KYC completed                                    | `emails/onboarding/kyc-completed.tsx`                   | `1347-7090` |
-| Application received — pending review by the company's approver(s)         | `emails/application-pending.tsx`             | `2464-3892` |
-| Approver notification — an account opening application awaits review       | `emails/onboarding/application-pending-approver.tsx`    | `2464-3996` |
-| Account opening application returned for revision by an approver           | `emails/onboarding/application-returned-applicant.tsx`  | `2464-4246` |
-| Approver notification — the applicant's form was returned for revision     | `emails/onboarding/application-returned-approver.tsx`   | `2464-4339` |
-| Applicant notification — signed off by all approvers, in final processing  | `emails/onboarding/application-approved.tsx`            | `2464-4144` |
-| Applicant/approver notification — declined by an approver                  | `emails/onboarding/application-declined.tsx`            | `2464-4427` |
-| Approver notification — the applicant cancelled the onboarding application | `emails/application-cancelled-approver.tsx`  | `1389-7986` |
-| Applicant notification — the onboarding application was cancelled          | `emails/onboarding/application-cancelled-applicant.tsx` | `2464-4525` |
-| Corporate account successfully opened — welcome / first log-in             | `emails/onboarding/account-opened.tsx`                  | `2464-4707` |
-| One-time password for the DK Onboarding Portal                             | `emails/onboarding/otp.tsx`                             | `2307-2034` |
-| Outgoing payment confirmation with a transaction summary                   | `emails/payment-debit.tsx`                   | `2417-2174` |
-| A payment is waiting for the approver's sign-off                           | `emails/payment-approval.tsx`                | `2354-6745` |
-
 Shared shell (font, logo, status icon, footer with Help/Privacy links) lives in
 `components/layout.tsx` (split into `email-header` / `email-body` / `email-footer`
 over `email-base`), the brand pill CTA in `components/cta-button.tsx`; templates only
