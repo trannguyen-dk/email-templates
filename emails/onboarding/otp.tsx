@@ -7,7 +7,7 @@ import {
   monoStack,
   paragraph,
   paragraphDark,
-} from "../components/layout.js";
+} from "../../components/layout.js";
 
 /**
  * One-time password for the DK Onboarding Portal.
@@ -20,29 +20,21 @@ export interface OtpEmailProps {
   code?: string;
   /** How long the code stays valid, e.g. "10 minutes". */
   validFor?: string;
-  supportEmail?: string;
-  helpUrl?: string;
-  privacyUrl?: string;
-  year?: number;
 }
 
 export default function OtpEmail({
   code = "FUDXUL",
   validFor = "10 minutes",
-  supportEmail,
-  helpUrl,
-  privacyUrl,
-  year,
 }: OtpEmailProps) {
   return (
-    <EmailLayout supportEmail={supportEmail} helpUrl={helpUrl} privacyUrl={privacyUrl} year={year}>
-      <Text style={{ ...paragraph, marginTop: 20 }}>Dear Customer,</Text>
+    <EmailLayout>
+      <Text style={{ ...paragraph, marginTop: 16 }}>Dear Customer,</Text>
 
-      <Text style={{ ...paragraph, marginTop: 20 }}>
+      <Text style={{ ...paragraph, marginTop: 16 }}>
         Here is your DK Onboarding Portal authentication code:
       </Text>
 
-      <Block paddingTop={12} paddingBottom={12}>
+      <Block paddingTop={16} paddingBottom={16}>
         <table role="presentation" cellPadding={0} cellSpacing={0} border={0} align="center">
           <tbody>
             <tr>
@@ -59,16 +51,16 @@ export default function OtpEmail({
         once.
       </Text>
 
-      <Text style={{ ...paragraph, fontWeight: 600, marginTop: 12 }}>
+      <Text style={{ ...paragraph, fontWeight: 600, marginTop: 16 }}>
         Please don’t share this code with anyone.
       </Text>
 
-      <Text style={{ ...paragraph, marginTop: 12 }}>
+      <Text style={{ ...paragraph, marginTop: 16 }}>
         If you did not request this, you can safely ignore this email.
       </Text>
 
-      <Text style={{ ...paragraphDark, marginTop: 20 }}>Best regards,</Text>
-      <Text style={{ ...paragraphDark, fontWeight: 600, marginTop: 4 }}>DK Bank Team</Text>
+      <Text style={{ ...paragraphDark, marginTop: 16 }}>Best regards,</Text>
+      <Text style={{ ...paragraphDark, fontWeight: 600, marginTop: 2 }}>DK Bank Team</Text>
     </EmailLayout>
   );
 }

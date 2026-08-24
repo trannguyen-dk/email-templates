@@ -5,14 +5,14 @@ import { emphasis, paragraph, textBase } from "./layout.js";
  * label/value rows separated by dashed rules.
  * Figma: DK.Notif › node 2417:2189.
  */
-export interface DetailRow {
+export interface Row {
   label: string;
   value: string;
   /** Optional second line under the value, e.g. a masked account number. */
   sub?: string;
 }
 
-export function DetailRows({ rows }: { rows: readonly DetailRow[] }) {
+export function Table({ rows }: { rows: readonly Row[] }) {
   return (
     <table role="presentation" cellPadding={0} cellSpacing={0} border={0} width="100%" style={card}>
       <tbody>
@@ -85,5 +85,5 @@ const subText: React.CSSProperties = {
   fontWeight: 400,
   lineHeight: "22px",
   letterSpacing: "-0.084px",
-  color: "#60646c",
+  color: "#262a2e",
 };

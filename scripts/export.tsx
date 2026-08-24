@@ -1,66 +1,61 @@
 /**
- * Renders every template in ../emails to static HTML in ../out.
+ * Renders every template in ../emails to static HTML in ../out, preserving the
+ * folder grouping (e.g. emails/onboarding/x.tsx -> out/onboarding/x.html).
  *
- *   pnpm --filter @crypto-dashboard/emails export
- *   EMAIL_ASSET_BASE_URL=https://cdn.example.com/emails pnpm --filter @crypto-dashboard/emails export
+ *   pnpm export
  *
- * Without EMAIL_ASSET_BASE_URL the HTML references `static/…` relative to the
- * output file, and `static/` is copied next to it so the file previews locally.
+ * The only local asset is the CTA arrow. Output HTML points at the repo's single
+ * `static/arrow-right.png` via `../../`, so nothing is copied — which assumes an
+ * output path of `out/<flow>/<name>.html`. Every other image is an absolute URL.
  */
-import { cpSync, mkdirSync, writeFileSync } from "node:fs";
+import { render } from "@react-email/components";
+import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { render } from "@react-email/components";
 
-import AccountOpenedEmail from "../emails/account-opened.js";
-import PaymentDebitEmail from "../emails/payment-debit.js";
-import PaymentApprovalEmail from "../emails/payment-approval.js";
-import OtpEmail from "../emails/otp.js";
-import ApplicationApprovedEmail from "../emails/application-approved.js";
-import ApplicationCancelledEmail from "../emails/application-cancelled.js";
-import ApplicationCancelledApproverEmail from "../emails/application-cancelled-approver.js";
-import ApplicationDeclinedEmail from "../emails/application-declined.js";
-import ApplicationPendingEmail from "../emails/application-pending.js";
-import ApplicationReturnedApproverEmail from "../emails/application-returned-approver.js";
-import ApplicationReturnedEmail from "../emails/application-returned.js";
-import ApprovalRequiredEmail from "../emails/approval-required.js";
-import KycCompletedEmail from "../emails/kyc-completed.js";
+import AccountOpenedEmail from "../emails/onboarding/account-opened.js";
+import ApplicationApprovedEmail from "../emails/onboarding/application-approved.js";
+import ApplicationCancelledApplicantEmail from "../emails/onboarding/application-cancelled-applicant.js";
+import ApplicationCancelledEmail from "../emails/onboarding/application-cancelled.js";
+import ApplicationDeclinedEmail from "../emails/onboarding/application-declined.js";
+import ApplicationPendingApproverEmail from "../emails/onboarding/application-pending-approver.js";
+import ApplicationReturnedApplicantEmail from "../emails/onboarding/application-returned-applicant.js";
+import ApplicationReturnedApproverEmail from "../emails/onboarding/application-returned-approver.js";
+import KycCompletedEmail from "../emails/onboarding/kyc-completed.js";
+import OtpEmail from "../emails/onboarding/otp.js";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, "..");
 const outDir = resolve(root, "out");
-const assetBaseUrl = process.env.EMAIL_ASSET_BASE_URL?.replace(/\/$/, "") ?? "static";
 
 const templates = [
-  { name: "kyc-completed", element: <KycCompletedEmail assetBaseUrl={assetBaseUrl} /> },
-  { name: "application-pending", element: <ApplicationPendingEmail /> },
-  { name: "approval-required", element: <ApprovalRequiredEmail assetBaseUrl={assetBaseUrl} /> },
+  { name: "onboarding/account-opened", element: <AccountOpenedEmail /> },
+  { name: "onboarding/kyc-completed", element: <KycCompletedEmail /> },
+  { name: "onboarding/application-cancelled", element: <ApplicationCancelledEmail /> },
   {
-    name: "application-returned",
-    element: <ApplicationReturnedEmail assetBaseUrl={assetBaseUrl} />,
+    name: "onboarding/application-pending-approver",
+    element: <ApplicationPendingApproverEmail />,
   },
-  { name: "application-returned-approver", element: <ApplicationReturnedApproverEmail /> },
-  { name: "application-approved", element: <ApplicationApprovedEmail /> },
-  { name: "application-declined", element: <ApplicationDeclinedEmail /> },
-  { name: "application-cancelled-approver", element: <ApplicationCancelledApproverEmail /> },
-  { name: "application-cancelled", element: <ApplicationCancelledEmail /> },
-  { name: "account-opened", element: <AccountOpenedEmail assetBaseUrl={assetBaseUrl} /> },
-  { name: "otp", element: <OtpEmail /> },
-  { name: "payment-debit", element: <PaymentDebitEmail /> },
   {
-    name: "payment-approval",
-    element: <PaymentApprovalEmail assetBaseUrl={assetBaseUrl} />,
+    name: "onboarding/application-returned-applicant",
+    element: <ApplicationReturnedApplicantEmail />,
   },
+  { name: "onboarding/application-returned-approver", element: <ApplicationReturnedApproverEmail /> },
+  { name: "onboarding/application-approved", element: <ApplicationApprovedEmail /> },
+  { name: "onboarding/application-declined", element: <ApplicationDeclinedEmail /> },
+  {
+    name: "onboarding/application-cancelled-applicant",
+    element: <ApplicationCancelledApplicantEmail />,
+  },
+  { name: "onboarding/otp", element: <OtpEmail /> },
 ];
 
 mkdirSync(outDir, { recursive: true });
-if (assetBaseUrl === "static") {
-  cpSync(resolve(root, "static"), resolve(outDir, "static"), { recursive: true });
-}
 
 for (const { name, element } of templates) {
   const html = await render(element, { pretty: true });
   const file = resolve(outDir, `${name}.html`);
+  mkdirSync(dirname(file), { recursive: true });
   writeFileSync(file, html);
-  console.log(`wrote ${file} (${html.length} bytes, assets → ${assetBaseUrl}/)`);
+  console.log(`wrote ${file} (${html.length} bytes)`);
 }
