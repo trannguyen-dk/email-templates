@@ -29,7 +29,7 @@ Before writing anything, work out which of these it is:
 
 | Situation                                       | What to do                                                            |
 | ----------------------------------------------- | --------------------------------------------------------------------- |
-| A new notification                              | New file in `emails/`                                                 |
+| A new notification                              | New file in `emails/<flow>/`                                                 |
 | Same copy, wide frame of an email already built | Nothing to build — the layout is fluid and already serves both widths |
 | A frame that supersedes one already built       | Update the existing template, don't add a second                      |
 
@@ -62,28 +62,44 @@ Most frames need no new components. Available from `components/`:
 | -------------------------------------- | ------------------------------------------------------------------------ |
 | `EmailLayout`                          | The shell — font, logo, status icon, footer. Every template wraps in it. |
 | `Block`                                | Vertical spacing (puts padding on a `<td>`)                              |
-| `CtaButton`                            | The brand pill button with trailing arrow                                |
+| `Button`                               | The brand pill button with trailing arrow                                |
 | `DetailRows`                           | The bordered transaction summary card                                    |
-| `paragraph` / `paragraphDark`          | Body copy — `#262A2E` and `#1D2A3D`                                      |
+| `paragraph` / `paragraphDark`          | Body copy — both `#262A2E`; `paragraphDark` only tightens tracking       |
 | `heading`                              | 18px semibold                                                            |
 | `emphasis`                             | Inline `<strong>` weight                                                 |
 | `inlineLink`                           | Underlined mailto/link inside copy                                       |
 | `textBase` / `fontStack` / `monoStack` | Building a new style                                                     |
-| `ICONS_CDN` / `SUPPORT_EMAIL`          | Asset host, support address                                              |
+| `SUPPORT_EMAIL`                        | Support address                                                          |
 
 `EmailLayout` props worth knowing: `statusIconUrl` (omit for no icon),
-`statusIconSize` (default 100; frames also use 80 and 84), `appPromo`, `supportEmail`, `helpUrl`, `privacyUrl`, `year`.
+`iconSize` (default 64 — leave it alone; every template renders 64x64). That is
+all: `appPromo`, `supportEmail`, `helpUrl`, `privacyUrl` and `year` belong to
+`EmailFooter` and must not be passed to the layout.
 
 If the frame needs something genuinely new, put it in `components/` as its own
 file rather than inline in the template — that is where `DetailRows` came from.
 
 ## 4. Source the status icon
 
-Icons are hosted, not committed. Probe the bucket before inventing anything:
+Icons are hosted, not committed. Pass the **absolute URL** on
+`statusIconUrl` — no constant, no lookup map. The canonical set:
+
+| Key          | Glyph                                    |
+| ------------ | ---------------------------------------- |
+| `success`    | green filled circle, white check         |
+| `pending`    | hourglass                                |
+| `processing` | arrow entering a box (inbound) — unused  |
+| `blocked`    | pale circle, diagonal slash (cancel/deny) |
+| `outgoing`   | arrow leaving a box (outbound)           |
+
+**If the frame shows no icon, omit `statusIconUrl`.** Do not substitute a
+near-enough glyph.
+
+Only if the frame needs something genuinely new, probe the bucket:
 
 ```sh
 B=https://notification-email-s3.s3.ap-southeast-1.amazonaws.com
-for f in icon-success icon-pending icon-warning icon-blocked icon-cancelled icon-outgoing; do
+for f in icon-success icon-pending icon-processing icon-blocked icon-outgoing; do
   printf "%-18s %s\n" $f "$(curl -s -o /dev/null -w '%{http_code}' $B/$f.png)"
 done
 ```
@@ -101,7 +117,7 @@ descriptions of the glyph.
 ```tsx
 import { Text } from "@react-email/components";
 
-import { EmailLayout, ICONS_CDN, paragraph, paragraphDark } from "../components/layout.js";
+import { EmailLayout, paragraph, paragraphDark } from "../components/layout.js";
 
 /**
  * One-line description of when this fires.
@@ -124,17 +140,17 @@ export default function ThingHappenedEmail({
 }: ThingHappenedEmailProps) {
   return (
     <EmailLayout
-      statusIconUrl={`${ICONS_CDN}/icon-success.png`}
+      statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-success.png"
       supportEmail={supportEmail}
       helpUrl={helpUrl}
       privacyUrl={privacyUrl}
       year={year}
     >
-      <Text style={{ ...paragraph, marginTop: 20 }}>Dear Applicant,</Text>
+      <Text style={{ ...paragraph, marginTop: 16 }}>Dear Applicant,</Text>
 
-      <Text style={{ ...paragraph, marginTop: 20 }}>Something happened to {companyName}.</Text>
+      <Text style={{ ...paragraph, marginTop: 16 }}>Something happened to {companyName}.</Text>
 
-      <Text style={{ ...paragraphDark, marginTop: 20 }}>Best regards,</Text>
+      <Text style={{ ...paragraphDark, marginTop: 16 }}>Best regards,</Text>
       <Text style={{ ...paragraphDark, fontWeight: 600 }}>DK Bank Team</Text>
     </EmailLayout>
   );
@@ -149,8 +165,8 @@ Notes on that shape:
   override at render time; the tokens let the HTML be used as a string template.
 - **`marginTop` on each `Text`** reproduces Figma's group gaps — usually 20px
   between blocks, 12px within a group.
-- **`assetBaseUrl` goes to `CtaButton`, not `EmailLayout`.** Only templates with
-  a button need it. Passing it to the layout is a type error.
+- **`Button` takes no asset prop.** The arrow is referenced directly as
+  `static/arrow-right.png`; `pnpm export` copies `static/` next to each output.
 - **`PreviewProps`** is sample data for the `email dev` server, unrelated to the
   removed `<Preview>` component.
 
@@ -158,8 +174,8 @@ Notes on that shape:
 
 Two places, or the file will never be built:
 
-1. `scripts/export.tsx` — add the import and an entry to `templates`. Templates
-   with a CTA also get `assetBaseUrl={assetBaseUrl}`.
+1. `scripts/export.tsx` — add the import and an entry to `templates`. The
+   `name` is the output path, so use `"<flow>/<template>"`.
 2. `README.md` — add a row to the template table with the Figma node id.
 
 The output filename comes from the `name` in the export entry. Renaming the
@@ -241,7 +257,8 @@ pnpm install                                     # once, from the repo root
 pnpm dev       # http://localhost:3030
 ```
 
-It lists every file in `emails/`, hot-reloads as you type, and renders each one
+It lists every file under `emails/` (including flow subfolders), hot-reloads as
+you type, and renders each one
 using its `PreviewProps`. Use this while building; it is far faster than
 exporting and reopening a file. It also has a plain-text view and a "source"
 tab showing the generated HTML.
@@ -298,7 +315,7 @@ is what `scripts/export.tsx` does and what a backend would do to send:
 
 ```tsx
 import { render } from "@react-email/components";
-import OtpEmail from "./emails/otp.js";
+import OtpEmail from "./emails/onboarding/otp.js";
 
 const html = await render(<OtpEmail code="FUDXUL" />, { pretty: true });
 const text = await render(<OtpEmail code="FUDXUL" />, { plainText: true });
@@ -313,5 +330,5 @@ placeholder tokens, if you have the choice — it is type-checked.
   reference and per-client support notes.
 - [caniemail.com](https://www.caniemail.com) — whether a CSS property actually
   works in Outlook/Gmail. Check here before reaching for anything clever.
-- `components/layout.tsx` in this package — the worked example of all of the
+- `components/layout.tsx` and its sections in this package — the worked example of all of the
   above.
