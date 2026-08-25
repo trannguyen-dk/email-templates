@@ -13,6 +13,10 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import AccountStatementEmail from "../emails/account/account-statement.js";
+import DocExpiryEmail from "../emails/account/doc-expiry.js";
+import FdMonthlySubscriptionEmail from "../emails/account/fd-monthly-subscription.js";
+import FdPlacedEmail from "../emails/account/fd-placed.js";
 import FixedDepositMaturityEmail from "../emails/account/fd-maturity-alert.js";
 import AccountOpenedEmail from "../emails/onboarding/account-opened.js";
 import ApplicationApprovedEmail from "../emails/onboarding/application-approved.js";
@@ -54,6 +58,10 @@ const outDir = resolve(root, "out");
 
 const templates = [
   { name: "account/fd-maturity-alert", element: <FixedDepositMaturityEmail /> },
+  { name: "account/account-statement", element: <AccountStatementEmail /> },
+  { name: "account/doc-expiry", element: <DocExpiryEmail /> },
+  {name: "account/fd-monthly-subscription",element: <FdMonthlySubscriptionEmail />},
+  { name: "account/fd-placed", element: <FdPlacedEmail /> },
   { name: "onboarding/account-opened", element: <AccountOpenedEmail /> },
   { name: "onboarding/kyc-completed", element: <KycCompletedEmail /> },
   { name: "onboarding/application-cancelled", element: <ApplicationCancelledEmail /> },
