@@ -6,7 +6,7 @@ import { Table } from "../../components/table.js";
 /**
  * Loan repayment confirmation — a repayment on the company's corporate loan
  * facility was received successfully, with the amount and loan account.
- * Figma: DK.Notif › node 2585:17497, "email-body" frame (2585:17501).
+ * Figma: DK.Notif › node 2585:17501, "email-body" ("Content") frame.
  *
  * The frame is named "loan / payment-due-reminder" in Figma, same as the
  * reminder frame (2585:17309), but its copy is a received confirmation —
