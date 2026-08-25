@@ -23,7 +23,7 @@ export default function DocumentExpiryEmail({
   userName = "{User's Name}",
   companyName = "[Company Name]",
   documentType = "{document_type}",
-  expiryDate = "{DD MM YYY}",
+  expiryDate = "{DD MM YYYY}",
   supportEmail = "business.care@dk.bt",
 }: DocumentExpiryEmailProps) {
   return (

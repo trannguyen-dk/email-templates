@@ -1,6 +1,6 @@
 import { Text } from "@react-email/components";
 
-import { EmailLayout, paragraph, paragraphDark } from "../../components/layout.js";
+import { EmailLayout, paragraph, paragraphDark, emphasis} from "../../components/layout.js";
 
 
 export interface RecurringDepositDebitEmailProps {
@@ -15,11 +15,11 @@ export default function RecurringDepositDebitEmail({
   return (
     <EmailLayout>
       <Text style={{ ...paragraph, marginTop: 20 }}>
-        Dear <strong>{userName}</strong>,
+        Dear <strong style={emphasis}>{userName}</strong>,
       </Text>
 
       <Text style={{ ...paragraph, marginTop: 16 }}>
-        As per your standing instruction, <strong>{amount}</strong> has been debited from your
+        As per your standing instruction, <strong style={emphasis}>{amount}</strong> has been debited from your
         current account and successfully deposited into your recurring Fixed Deposit.
       </Text>
 

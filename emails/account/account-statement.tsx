@@ -1,7 +1,7 @@
 import { Text } from "@react-email/components";
 
 import { Button } from "../../components/button.js";
-import { EmailLayout, paragraph, paragraphDark } from "../../components/layout.js";
+import { EmailLayout, paragraph, paragraphDark , emphasis} from "../../components/layout.js";
 
 
 export interface StatementAvailableEmailProps {
@@ -20,12 +20,12 @@ export default function StatementAvailableEmail({
   return (
     <EmailLayout>
       <Text style={{ ...paragraph, marginTop: 20 }}>
-        Dear <strong>{userName}</strong>,
+        Dear <strong style={emphasis}>{userName}</strong>,
       </Text>
 
       <Text style={{ ...paragraph, marginTop: 16 }}>
-        Your account statement for account <strong>{accountNumber}</strong> for the period{" "}
-        <strong>{dateRange}</strong> is now available for download on the DK Business Portal.
+        Your account statement for account <strong style={emphasis}>{accountNumber}</strong> for the period{" "}
+        <strong style={emphasis}>{dateRange}</strong> is now available for download on the DK Business Portal.
       </Text>
 
       <Button href={portalUrl}>Go to DK Bank portal</Button>
