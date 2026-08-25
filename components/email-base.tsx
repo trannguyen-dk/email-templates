@@ -20,7 +20,7 @@ export const M = {
    * 526x135 (aspect 3.90), so 98x28 (3.50) stretches it vertically by ~11%.
    * The ratio-true sizes at these bounds are 98x25 and 109x28.
    */
-  headerLogo: { width: 98, height: 28 },
+  headerLogo: { width: 98, height: 32 },
   /** Logo -> status icon. Measured ~30px in Figma; snapped to gap-8. */
   iconGap: 28,
   /**
