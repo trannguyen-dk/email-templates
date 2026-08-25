@@ -26,6 +26,7 @@ import KycCompletedEmail from "../emails/onboarding/kyc-completed.js";
 import OtpEmail from "../emails/onboarding/otp.js";
 import OpenAdditionalMcaEmail from "../emails/account/open-additional-MCA.js";
 import PaymentDueReminderEmail from "../emails/loan/payment-due-reminder.js";
+import RepaymentReceivedEmail from "../emails/loan/repayment-received.js";
 import ApproverBankProcessingEmail from "../emails/payment/approver-bank-processing.js";
 import BeneficiaryAccCreditedEmail from "../emails/payment/beneficiary-acc-credited.js";
 import FailedEmail from "../emails/payment/failed.js";
@@ -68,6 +69,7 @@ const templates = [
     element: <OpenAdditionalMcaEmail />,
   },
   { name: "loan/payment-due-reminder", element: <PaymentDueReminderEmail /> },
+  { name: "loan/repayment-received", element: <RepaymentReceivedEmail /> },
   { name: "payment/debited-success", element: <DebitedSuccessEmail /> },
   {
     name: "payment/beneficiary-acc-credited",

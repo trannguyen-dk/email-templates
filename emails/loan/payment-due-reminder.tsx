@@ -7,8 +7,9 @@ import { Table } from "../../components/table.js";
  * Loan repayment reminder — a repayment on the company's corporate loan
  * facility is coming due, with the loan account, amount and due date.
  * Figma: DK.Notif › node 2585:17309, "email-body" frame (2585:17339).
- * The section's second payment-due-reminder frame (2585:17497) is the same
- * copy at a wider width — one fluid render serves both.
+ * The section's second frame named payment-due-reminder (2585:17497) is a
+ * different email despite the shared name — a repayment-received
+ * confirmation, built as `repayment-received.tsx`.
  *
  * The status icon is `icon-warning` — the dark exclamation-mark circle the
  * frame draws. CONVENTIONS.md § Assets lists it as retired because no frame
