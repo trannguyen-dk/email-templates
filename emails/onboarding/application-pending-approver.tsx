@@ -5,7 +5,7 @@ import { EmailLayout, emphasis, paragraphDark } from "../../components/layout.js
 
 /**
  * Approver notification — an account opening application awaits review.
- * The approver-side counterpart to `application-pending`.
+ * The approver-side counterpart to `application-pending-applicant`.
  * Figma: DK.Notif › node 2464:3996, "Content" frame (343x808).
  */
 export interface ApplicationPendingApproverEmailProps {

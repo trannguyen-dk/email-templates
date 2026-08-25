@@ -18,6 +18,7 @@ import ApplicationApprovedEmail from "../emails/onboarding/application-approved.
 import ApplicationCancelledApplicantEmail from "../emails/onboarding/application-cancelled-applicant.js";
 import ApplicationCancelledEmail from "../emails/onboarding/application-cancelled.js";
 import ApplicationDeclinedEmail from "../emails/onboarding/application-declined.js";
+import ApplicationPendingApplicantEmail from "../emails/onboarding/application-pending-applicant.js";
 import ApplicationPendingApproverEmail from "../emails/onboarding/application-pending-approver.js";
 import ApplicationReturnedApplicantEmail from "../emails/onboarding/application-returned-applicant.js";
 import ApplicationReturnedApproverEmail from "../emails/onboarding/application-returned-approver.js";
@@ -41,6 +42,10 @@ const templates = [
   { name: "onboarding/account-opened", element: <AccountOpenedEmail /> },
   { name: "onboarding/kyc-completed", element: <KycCompletedEmail /> },
   { name: "onboarding/application-cancelled", element: <ApplicationCancelledEmail /> },
+  {
+    name: "onboarding/application-pending-applicant",
+    element: <ApplicationPendingApplicantEmail />,
+  },
   {
     name: "onboarding/application-pending-approver",
     element: <ApplicationPendingApproverEmail />,
