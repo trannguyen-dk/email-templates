@@ -10,12 +10,12 @@ import { EmailLayout, emphasis, paragraph, paragraphDark } from "../../component
  *
  * The frame is named "outgoing-payment / maintenance-fee" like the monthly
  * fee frame (2464:6490, built as `maintenance-fee.tsx`), but its copy is the
- * low-balance fee — a naming slip; named for what the email is. Placeholders
- * are written in square brackets in the frame; shipped as curly-brace tokens
- * per CONVENTIONS.md § Content. Same stacked-coins `icon-fee` as the monthly
- * fee.
+ * minimum-balance fee — a naming slip; named for what the email is.
+ * Placeholders are written in square brackets in the frame; shipped as
+ * curly-brace tokens per CONVENTIONS.md § Content. Same stacked-coins
+ * `icon-fee` as the monthly fee.
  */
-export interface LowBalanceFeeEmailProps {
+export interface MinBalanceFeeEmailProps {
   userName?: string;
   /** Fee as it reads in the body copy, e.g. "5.00 USD". */
   amount?: string;
@@ -25,12 +25,12 @@ export interface LowBalanceFeeEmailProps {
   minBalance?: string;
 }
 
-export default function LowBalanceFeeEmail({
+export default function MinBalanceFeeEmail({
   userName = "{User's Name}",
   amount = "{Amount}",
   month = "{Month}",
   minBalance = "{Min. Amount}",
-}: LowBalanceFeeEmailProps) {
+}: MinBalanceFeeEmailProps) {
   return (
     <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-fee.png">
       <Text style={{ ...paragraph, marginTop: 16 }}>
@@ -50,4 +50,4 @@ export default function LowBalanceFeeEmail({
   );
 }
 
-LowBalanceFeeEmail.PreviewProps = {} satisfies LowBalanceFeeEmailProps;
+MinBalanceFeeEmail.PreviewProps = {} satisfies MinBalanceFeeEmailProps;
