@@ -30,6 +30,7 @@ import OverdueReminderEmail from "../emails/loan/overdue-reminder.js";
 import PaymentDueReminderEmail from "../emails/loan/payment-due-reminder.js";
 import RepaymentReceivedEmail from "../emails/loan/repayment-received.js";
 import RepaymentRequestApprovedEmail from "../emails/loan/repayment-request-approved.js";
+import RepaymentRequestDeclinedEmail from "../emails/loan/repayment-request-declined.js";
 import RepaymentRequestPendingApproverEmail from "../emails/loan/repayment-request-pending-approver.js";
 import RepaymentRequestSubmittedEmail from "../emails/loan/repayment-request-submitted.js";
 import ApproverBankProcessingEmail from "../emails/payment/approver-bank-processing.js";
@@ -78,6 +79,7 @@ const templates = [
   { name: "loan/payment-due-reminder", element: <PaymentDueReminderEmail /> },
   { name: "loan/repayment-received", element: <RepaymentReceivedEmail /> },
   { name: "loan/repayment-request-approved", element: <RepaymentRequestApprovedEmail /> },
+  { name: "loan/repayment-request-declined", element: <RepaymentRequestDeclinedEmail /> },
   {
     name: "loan/repayment-request-pending-approver",
     element: <RepaymentRequestPendingApproverEmail />,
