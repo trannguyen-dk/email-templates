@@ -15,9 +15,14 @@ export const SUPPORT_EMAIL = "business.care@dk.bt";
 
 /** Measurements shared by every frame. See CONVENTIONS.md § Spacing. */
 export const M = {
-  headerLogo: { width: 93, height: 24 },
+  /**
+   * Header wordmark. Set from the frame's 98x28 slot; note the source asset is
+   * 526x135 (aspect 3.90), so 98x28 (3.50) stretches it vertically by ~11%.
+   * The ratio-true sizes at these bounds are 98x25 and 109x28.
+   */
+  headerLogo: { width: 98, height: 28 },
   /** Logo -> status icon. Measured ~30px in Figma; snapped to gap-8. */
-  iconGap: 32,
+  iconGap: 28,
   /**
    * Body content -> footer (mt-11 = 44px). Applied as padding-top on the <td>:
    * Outlook ignores margins here, so padding is the email-safe equivalent.

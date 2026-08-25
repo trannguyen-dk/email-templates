@@ -12,6 +12,14 @@ export interface Row {
   value: string;
   /** Optional second line under the value, e.g. a masked account number. */
   sub?: string;
+  /**
+   * Semantic colour for the value. Omit for the body colour; "credit" renders
+   * the green the inbound-credit frame uses on its signed amount.
+   *
+   * A tone rather than a colour string, so the green lives here once instead of
+   * being re-picked by every template that shows money moving.
+   */
+  tone?: "credit";
 }
 
 export function Table({ rows }: { rows: readonly Row[] }) {
@@ -36,7 +44,9 @@ export function Table({ rows }: { rows: readonly Row[] }) {
                     <tr>
                       <td style={labelCell}>{r.label}</td>
                       <td style={valueCell}>
-                        <span style={emphasis}>{r.value}</span>
+                        <span style={r.tone === "credit" ? creditValue : emphasis}>
+                          {r.value}
+                        </span>
                         {r.sub ? <div style={subText}>{r.sub}</div> : null}
                       </td>
                     </tr>
@@ -100,6 +110,18 @@ const valueCell: React.CSSProperties = {
   padding: "12px 0",
   verticalAlign: "top",
   textAlign: "right",
+};
+
+/**
+ * Credit green for a positive amount. The one text colour in the project that
+ * is not #262A2E, so it is deliberately scoped to this cell.
+ *
+ * UNVERIFIED: read off the frame by eye, not from Figma (the MCP connector was
+ * unauthorised). Confirm the token before sending.
+ */
+const creditValue: React.CSSProperties = {
+  ...emphasis,
+  color: "#218358",
 };
 
 const subText: React.CSSProperties = {

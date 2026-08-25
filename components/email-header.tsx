@@ -4,7 +4,7 @@ import { Block, LOGO_URL, M } from "./email-base.js";
 
 /**
  * Email header — the centred DK Bank wordmark, and nothing else.
- * Figma: DK.Notif › "Content" frames, 93x24 at the top of every email.
+ * Figma: DK.Notif › "Content" frames, 98x28 at the top of every email.
  */
 export function EmailHeader() {
   return (

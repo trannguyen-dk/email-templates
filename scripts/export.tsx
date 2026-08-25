@@ -24,8 +24,14 @@ import ApplicationReturnedApproverEmail from "../emails/onboarding/application-r
 import KycCompletedEmail from "../emails/onboarding/kyc-completed.js";
 import OtpEmail from "../emails/onboarding/otp.js";
 import OpenAdditionalMcaEmail from "../emails/account/open-additional-MCA.js";
+import ApproverBankProcessingEmail from "../emails/payment/approver-bank-processing.js";
 import BeneficiaryAccCreditedEmail from "../emails/payment/beneficiary-acc-credited.js";
+import FailedEmail from "../emails/payment/failed.js";
+import IncomingPaymentEmail from "../emails/payment/incoming-payment.js";
+import ModifyPaymentEmail from "../emails/payment/modify-payment.js";
 import DebitedSuccessEmail from "../emails/payment/debited-success.js";
+import PendingApprovalEmail from "../emails/payment/pending-approval.js";
+import RejectedByApproverEmail from "../emails/payment/rejected-by-approver.js";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, "..");
@@ -60,6 +66,12 @@ const templates = [
     name: "payment/beneficiary-acc-credited",
     element: <BeneficiaryAccCreditedEmail />,
   },
+  { name: "payment/pending-approval", element: <PendingApprovalEmail /> },
+  { name: "payment/modify-payment", element: <ModifyPaymentEmail /> },
+  { name: "payment/rejected-by-approver", element: <RejectedByApproverEmail /> },
+  { name: "payment/approver-bank-processing", element: <ApproverBankProcessingEmail /> },
+  { name: "payment/failed", element: <FailedEmail /> },
+  { name: "payment/incoming-payment", element: <IncomingPaymentEmail /> },
 ];
 
 mkdirSync(outDir, { recursive: true });

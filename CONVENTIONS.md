@@ -171,7 +171,7 @@ Shared shell is split by section, over a common foundation:
 | File                         | Holds                                              |
 | ---------------------------- | -------------------------------------------------- |
 | `components/email-base.tsx`  | hosts, `M` measurements, `Block`, text styles      |
-| `components/email-header.tsx`| the DK logo, 93x24, centred                        |
+| `components/email-header.tsx`| the DK logo, 98x28, centred                        |
 | `components/email-body.tsx`  | optional status icon, then the template's copy      |
 | `components/email-footer.tsx`| rules, note, legal block, app promo, footer links   |
 | `components/layout.tsx`      | document/font/panel shell composing the three      |
