@@ -13,6 +13,7 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import FixedDepositMaturityEmail from "../emails/account/fd-maturity-alert.js";
 import AccountOpenedEmail from "../emails/onboarding/account-opened.js";
 import ApplicationApprovedEmail from "../emails/onboarding/application-approved.js";
 import ApplicationCancelledApplicantEmail from "../emails/onboarding/application-cancelled-applicant.js";
@@ -47,6 +48,7 @@ const root = resolve(here, "..");
 const outDir = resolve(root, "out");
 
 const templates = [
+  { name: "account/fd-maturity-alert", element: <FixedDepositMaturityEmail /> },
   { name: "onboarding/account-opened", element: <AccountOpenedEmail /> },
   { name: "onboarding/kyc-completed", element: <KycCompletedEmail /> },
   { name: "onboarding/application-cancelled", element: <ApplicationCancelledEmail /> },
