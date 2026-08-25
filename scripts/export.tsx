@@ -38,6 +38,11 @@ import BeneficiaryAccCreditedEmail from "../emails/payment/beneficiary-acc-credi
 import FailedEmail from "../emails/payment/failed.js";
 import IncomingPaymentEmail from "../emails/payment/incoming-payment.js";
 import ModifyPaymentEmail from "../emails/payment/modify-payment.js";
+import InterestEmail from "../emails/others/interest.js";
+import MinBalanceFeeEmail from "../emails/others/min-balance-fee.js";
+import MaintenanceFeeEmail from "../emails/others/maintenance-fee.js";
+import ManualAdjustmentEmail from "../emails/others/manual-adjustment.js";
+import MerchantSettlementEmail from "../emails/others/merchant-settlement.js";
 import DebitedSuccessEmail from "../emails/payment/debited-success.js";
 import PendingApprovalEmail from "../emails/payment/pending-approval.js";
 import RejectedByApproverEmail from "../emails/payment/rejected-by-approver.js";
@@ -96,6 +101,11 @@ const templates = [
   { name: "payment/approver-bank-processing", element: <ApproverBankProcessingEmail /> },
   { name: "payment/failed", element: <FailedEmail /> },
   { name: "payment/incoming-payment", element: <IncomingPaymentEmail /> },
+  { name: "others/maintenance-fee", element: <MaintenanceFeeEmail /> },
+  { name: "others/min-balance-fee", element: <MinBalanceFeeEmail /> },
+  { name: "others/manual-adjustment", element: <ManualAdjustmentEmail /> },
+  { name: "others/merchant-settlement", element: <MerchantSettlementEmail /> },
+  { name: "others/interest", element: <InterestEmail /> },
 ];
 
 mkdirSync(outDir, { recursive: true });
