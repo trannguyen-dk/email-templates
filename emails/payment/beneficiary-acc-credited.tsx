@@ -30,7 +30,7 @@ export default function BeneficiaryAccCreditedEmail({
   accountMasked = "***{account_last4}",
   beneficiaryName = "{beneficiary_name}",
   beneficiaryMasked = "***{beneficiary_last4}",
-  currentBalance = "{amount}{ccy}",
+  currentBalance = "{balance}{ccy}",
   referenceId = "{reference_id}",
   dateTime = "{date_time}",
 }: BeneficiaryAccCreditedEmailProps) {

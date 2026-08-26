@@ -44,7 +44,7 @@ export default function PendingApprovalEmail({
   accountMasked = "***{account_last4}",
   beneficiaryName = "{beneficiary_name}",
   beneficiaryMasked = "***{beneficiary_last4}",
-  currentBalance = "{amount}{ccy}",
+  currentBalance = "{balance}{ccy}",
   referenceId = "{reference_id}",
   dateTime = "{date_time}",
   approveUrl = "https://cibs-gmc.uat.digitalkidu.bt/uatonebank/66666666_default/h5/53000001-1.0.46.0/html/www/index.html#/login",
