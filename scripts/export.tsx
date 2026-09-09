@@ -28,6 +28,7 @@ import ApplicationPendingApproverEmail from "../emails/onboarding/application-pe
 import ApplicationReturnedApplicantEmail from "../emails/onboarding/application-returned-applicant.js";
 import ApplicationReturnedApproverEmail from "../emails/onboarding/application-returned-approver.js";
 import KycCompletedEmail from "../emails/onboarding/kyc-completed.js";
+import LoginSuccessEmail from "../emails/onboarding/login-success.js";
 import OtpEmail from "../emails/onboarding/otp.js";
 import OpenAdditionalMcaEmail from "../emails/account/open-additional-MCA.js";
 import FailedRepaymentEmail from "../emails/loan/failed-repayment.js";
@@ -85,6 +86,7 @@ const templates = [
     element: <ApplicationCancelledApplicantEmail />,
   },
   { name: "onboarding/otp", element: <OtpEmail /> },
+  { name: "onboarding/login-success", element: <LoginSuccessEmail /> },
   {
     name: "account/open-additional-MCA",
     element: <OpenAdditionalMcaEmail />,
