@@ -32,9 +32,7 @@ export default function LoginSuccessEmail({
 }: LoginSuccessEmailProps) {
   return (
     <EmailLayout logoSize={{ width: 98, height: 31 }}>
-      <Text style={{ ...paragraph, marginTop: 16 }}>
-        Dear <strong style={emphasis}>{userName}</strong>,
-      </Text>
+      <Text style={{ ...paragraph, marginTop: 16 }}>Dear {userName},</Text>
 
       <Text style={{ ...paragraph, marginTop: 16 }}>
         A new login to your DK Onboarding Portal account was made on{" "}
