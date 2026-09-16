@@ -18,7 +18,7 @@ export default function ApplicationPendingApproverEmail({
   reviewUrl = "https://onboarding.uat.digitalkidu.bt/auth/login",
 }: ApplicationPendingApproverEmailProps) {
   return (
-    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-pending.png">
+    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-pending-v2.png">
       <Text style={{ ...paragraphDark, marginTop: 16 }}>Dear Approver,</Text>
 
       <Text style={{ ...paragraphDark, marginTop: 16 }}>

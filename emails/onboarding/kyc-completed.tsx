@@ -26,7 +26,7 @@ export default function KycCompletedEmail({
   supportEmail = SUPPORT_EMAIL,
 }: KycCompletedEmailProps) {
   return (
-    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-success.png">
+    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-success-v2.png">
       <Text style={{ ...paragraph, marginTop: 16 }}>Dear Applicant,</Text>
 
       <Text style={{ ...paragraph, marginTop: 16 }}>

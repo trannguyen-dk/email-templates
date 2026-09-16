@@ -19,7 +19,7 @@ import { EmailLayout, paragraph, paragraphDark } from "../../components/layout.j
  */
 export default function ApplicationPendingApplicantEmail() {
   return (
-    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-pending.png">
+    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-pending-v2.png">
       <Text style={{ ...paragraph, marginTop: 16 }}>Dear Applicant,</Text>
 
       <Text style={{ ...paragraph, marginTop: 16 }}>

@@ -5,7 +5,7 @@ import { Block, M } from "./email-base.js";
 export interface EmailBodyProps {
   /**
    * Hosted status icon shown under the logo, as an absolute URL, e.g.
-   * "https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-success.png".
+   * "https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-success-v2.png".
    * See CONVENTIONS.md for the full set. Omit it for the frames that go
    * straight from the logo to the copy.
    */

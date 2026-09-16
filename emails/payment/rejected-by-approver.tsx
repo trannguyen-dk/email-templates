@@ -37,7 +37,7 @@ export default function RejectedByApproverEmail({
   beneficiaryMasked = "***{beneficiary_last4}",
 }: RejectedByApproverEmailProps) {
   return (
-    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-blocked.png">
+    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-blocked-v2.png">
       <Text style={{ ...paragraph, marginTop: 16 }}>
         Dear <strong style={emphasis}>{userName}</strong>,
       </Text>

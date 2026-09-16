@@ -24,7 +24,7 @@ export default function RepaymentRequestApprovedEmail({
   repaymentAmount = "{amount}",
 }: RepaymentRequestApprovedEmailProps) {
   return (
-    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-success.png">
+    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-success-v2.png">
       <Text style={{ ...paragraph, marginTop: 16 }}>
         Dear <strong style={emphasis}>{userName}</strong>,
       </Text>

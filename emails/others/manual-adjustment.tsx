@@ -37,7 +37,7 @@ export default function ManualAdjustmentEmail({
   dateTime = "{date_time}",
 }: ManualAdjustmentEmailProps) {
   return (
-    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-outgoing.png">
+    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-outgoing-v2.png">
       <Text style={{ ...paragraph, marginTop: 16 }}>
         Dear <strong style={emphasis}>{userName}</strong>,
       </Text>

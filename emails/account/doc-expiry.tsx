@@ -27,7 +27,7 @@ export default function DocumentExpiryEmail({
   supportEmail = "business.care@dk.bt",
 }: DocumentExpiryEmailProps) {
   return (
-    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-warning.png">
+    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-warning-v2.png">
       <Text style={{ ...paragraph, marginTop: 20 }}>
         Dear <strong style={emphasis}>{userName}</strong>,
       </Text>

@@ -33,7 +33,7 @@ export default function PaymentDueReminderEmail({
   dueDate = "{DD MM YYYY}",
 }: PaymentDueReminderEmailProps) {
   return (
-    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-warning.png">
+    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-warning-v2.png">
       <Text style={{ ...paragraph, marginTop: 16 }}>Dear Customer,</Text>
 
       <Text style={{ ...paragraph, marginTop: 16 }}>

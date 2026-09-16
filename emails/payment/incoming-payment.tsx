@@ -42,7 +42,7 @@ export default function IncomingPaymentEmail({
   dateTime = "{date_time}",
 }: IncomingPaymentEmailProps) {
   return (
-    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-processing.png">
+    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-processing-v2.png">
       <Text style={{ ...paragraph, marginTop: 16 }}>
         Dear <strong style={emphasis}>{userName}</strong>,
       </Text>

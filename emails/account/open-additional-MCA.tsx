@@ -22,7 +22,7 @@ export default function OpenAdditionalMcaEmail({
   openedOn = "{opened_on}",
 }: OpenAdditionalMcaEmailProps) {
   return (
-    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-success.png">
+    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-success-v2.png">
       <Text style={{ ...paragraph, marginTop: 16 }}>Dear Customer,</Text>
 
       <Text style={{ ...paragraph, marginTop: 16 }}>

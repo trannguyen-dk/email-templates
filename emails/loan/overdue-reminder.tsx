@@ -42,7 +42,7 @@ export default function OverdueReminderEmail({
   supportEmail = SUPPORT_EMAIL,
 }: OverdueReminderEmailProps) {
   return (
-    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-warning.png">
+    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-warning-v2.png">
       <Text style={{ ...paragraph, marginTop: 16 }}>
         Dear <strong style={emphasis}>{userName}</strong>,
       </Text>

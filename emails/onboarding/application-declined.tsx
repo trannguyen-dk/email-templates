@@ -26,7 +26,7 @@ export default function ApplicationDeclinedEmail({
   supportEmail = SUPPORT_EMAIL,
 }: ApplicationDeclinedEmailProps) {
   return (
-    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-blocked.png">
+    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-blocked-v2.png">
       <Text style={{ ...paragraph, marginTop: 16 }}>Dear Applicant / Approver,</Text>
 
       <Text style={{ ...paragraph, marginTop: 16 }}>
