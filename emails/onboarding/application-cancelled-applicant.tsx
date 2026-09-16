@@ -3,36 +3,28 @@ import { Text } from "@react-email/components";
 import { EmailLayout, paragraph, paragraphDark } from "../../components/layout.js";
 
 /**
- * Applicant notification — the onboarding application was cancelled.
- * Figma: DK.Notif › node 2464:4525, "Content" frame.
+ * Approver notification — the onboarding application was cancelled by the
+ * applicant, so no further action is needed from the approver(s).
+ * Figma: DK.Notif › node 2464:4521, "corp-onboarding / cancelled" — the
+ * `declined` icon variant, which is the hosted `blocked` glyph.
  *
- * UNVERIFIED against the frame — the Figma MCP was unreachable when this was
- * written, so the copy is carried from the superseded node 1390:8390 and the
- * spacing/colour follow CONVENTIONS.md. Three things to re-check once Figma is
- * reachable: the wording, whether the frame keeps the `cancelled` status icon,
- * and the greeting — 1390:8390 served both audiences with "Dear
- * Applicant/Approver," and this split assumes the new frame says "Dear
- * Applicant,".
+ * Named for who cancelled, not who receives: the frame greets the approver.
+ * The DK-Bank-initiated counterpart (sent to both audiences) is
+ * `application-cancelled`.
  */
-export interface ApplicationCancelledApplicantEmailProps {
-}
-
-export default function ApplicationCancelledApplicantEmail({
-}: ApplicationCancelledApplicantEmailProps) {
+export default function ApplicationCancelledApplicantEmail() {
   return (
     <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-blocked-v2.png">
-      <Text style={{ ...paragraph, marginTop: 16 }}>Dear Applicant,</Text>
+      <Text style={{ ...paragraph, marginTop: 16 }}>Dear Approver,</Text>
 
       <Text style={{ ...paragraph, marginTop: 16 }}>
-        We would like to inform you that your onboarding application with DK Bank has been cancelled.
+        We would like to inform you that the onboarding application for your company has been
+        cancelled by the applicant.
       </Text>
 
       <Text style={{ ...paragraph, marginTop: 16 }}>
-        If you believe this cancellation was made in error or if you require further clarification,
-        please contact your Relationship Manager or our Customer Service team for assistance.
+        No further action is required from you at this time.
       </Text>
-
-      <Text style={{ ...paragraph, marginTop: 16 }}>We appreciate your understanding.</Text>
 
       <Text style={{ ...paragraph, marginTop: 16 }}>Thank you for your interest in DK Bank.</Text>
 
@@ -41,6 +33,3 @@ export default function ApplicationCancelledApplicantEmail({
     </EmailLayout>
   );
 }
-
-ApplicationCancelledApplicantEmail.PreviewProps =
-  {} satisfies ApplicationCancelledApplicantEmailProps;
