@@ -16,9 +16,12 @@ import { EmailHeader } from "./email-header.js";
  * Figma: DK.Notif › "Content" frames (343 wide; e.g. 2453:3411).
  */
 
-export interface EmailLayoutProps extends EmailBodyProps {}
+export interface EmailLayoutProps extends EmailBodyProps {
+  /** Overrides the header wordmark dimensions, e.g. to keep the asset's true ratio. */
+  logoSize?: { width: number; height: number };
+}
 
-export function EmailLayout({ statusIconUrl, iconSize, children }: EmailLayoutProps) {
+export function EmailLayout({ statusIconUrl, iconSize, logoSize, children }: EmailLayoutProps) {
   return (
     <Html lang="en">
       <Head>
@@ -38,7 +41,7 @@ export function EmailLayout({ statusIconUrl, iconSize, children }: EmailLayoutPr
         <Container style={container}>
           <Row>
             <Column style={containerInner}>
-              <EmailHeader />
+              <EmailHeader logoSize={logoSize} />
 
               <EmailBody statusIconUrl={statusIconUrl} iconSize={iconSize}>
                 {children}

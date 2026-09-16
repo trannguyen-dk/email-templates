@@ -21,7 +21,7 @@ export default function AccountOpenedEmail({
   portalUrl = "https://cibs-gmc.uat.digitalkidu.bt/uatonebank/66666666_default/h5/53000001-1.0.46.0/html/www/index.html#/login",
 }: AccountOpenedEmailProps) {
   return (
-    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-success.png">
+    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-success-v2.png">
       <Text style={{ ...paragraph, marginTop: 16 }}>Dear Customer,</Text>
 
       <Text style={{ ...paragraph, marginTop: 16 }}>
@@ -31,6 +31,11 @@ export default function AccountOpenedEmail({
       <Text style={{ ...paragraph, marginTop: 16 }}>
         For your first time log-in, please click &ldquo;Set up account&rdquo; when you access the
         internet banking portal, then follow the steps to set up your account.
+      </Text>
+
+      <Text style={{ ...paragraph, marginTop: 16 }}>
+        To help you get started, we&rsquo;ve attached a CIB Portal Registration Guide and
+        instructions on how to fund your account in this email.
       </Text>
 
       <Button href={portalUrl}>Go to DK Business portal</Button>
