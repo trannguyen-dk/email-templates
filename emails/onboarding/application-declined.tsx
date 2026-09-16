@@ -10,13 +10,10 @@ import {
 
 /**
  * Applicant/approver notification — declined by an approver.
- * Figma: DK.Notif › node 2464:4427, "Content" frame.
- *
- * UNVERIFIED against the frame — the Figma MCP was unreachable when this was
- * written, so the copy is carried verbatim from the superseded node 1349:8337
- * and the spacing/colour follow CONVENTIONS.md. Two things to re-check once
- * Figma is reachable: the wording, and whether the frame shows a status icon
- * at all (node 2464:4339 dropped its icon in this same batch).
+ * Figma: DK.Notif › node 2464:4423, "corp-onboarding / declined" — the
+ * `declined` icon variant, which is the hosted `blocked` glyph. The frame
+ * writes the greeting unspaced ("Dear Applicant/Approver,"); the spaced form
+ * here matches the sibling cancelled frame, pending design settling on one.
  */
 export interface ApplicationDeclinedEmailProps {
   supportEmail?: string;
