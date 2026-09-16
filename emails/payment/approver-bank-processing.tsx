@@ -9,68 +9,59 @@ import { Table } from "../../components/table.js";
  * `debited-success`; nothing has settled yet.
  * Figma: DK.Notif › node 2464:6143, "Content" frame.
  *
- * UNVERIFIED against the frame — the Figma MCP was unreachable when this was
- * written, so the copy follows the sibling payment frames and the spacing
- * follows CONVENTIONS.md.
- *
- * On the icon: `icon-processing` was tried here first on the strength of the
- * name, but its glyph is an arrow entering a box — the inbound counterpart to
- * `icon-outgoing`, and it belongs to `incoming-payment`. This frame is an
- * outbound payment mid-flight, so it uses `icon-pending` (the hourglass),
- * which is direction-neutral and already carries "in progress" elsewhere in
- * the set. Re-check against the frame.
+ * The one frame in the set with no status icon: the body goes straight from
+ * the wordmark to the greeting, so `statusIconUrl` is deliberately omitted.
+ * The summary card carries the signed amount and no date row — the payment
+ * has no settlement timestamp yet.
  */
 export interface ApproverBankProcessingEmailProps {
   userName?: string;
-  /** Amount as it reads in the body copy, e.g. "10,000.00 USD". */
-  amount?: string;
-  /** Amount for the summary card — unsigned; nothing has settled. */
-  paymentAmount?: string;
+  /** Reference as it reads in the body copy, rendered after a "#". */
+  paymentRef?: string;
+  /** Signed amount for the summary card, e.g. "-10,000.00 USD". */
+  debitAmount?: string;
   accountName?: string;
   accountMasked?: string;
   beneficiaryName?: string;
   beneficiaryMasked?: string;
   referenceId?: string;
-  dateTime?: string;
 }
 
 export default function ApproverBankProcessingEmail({
   userName = "{User's Name}",
-  amount = "{Amount}",
-  paymentAmount = "{amount}{ccy}",
+  paymentRef = "{Reference ID}",
+  debitAmount = "-{amount}{ccy}",
   accountName = "{account_name}",
   accountMasked = "***{account_last4}",
   beneficiaryName = "{beneficiary_name}",
   beneficiaryMasked = "***{beneficiary_last4}",
   referenceId = "{reference_id}",
-  dateTime = "{date_time}",
 }: ApproverBankProcessingEmailProps) {
   return (
-    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-pending-v2.png">
+    <EmailLayout>
       <Text style={{ ...paragraph, marginTop: 16 }}>
         Dear <strong style={emphasis}>{userName}</strong>,
       </Text>
 
       <Text style={{ ...paragraph, marginTop: 16 }}>
-        Your payment of <strong style={emphasis}>{amount}</strong> has been approved and is now being
-        processed by DK Bank. We will notify you once it has been completed.
+        Payment <strong style={emphasis}>#{paymentRef}</strong> has been approved and submitted to
+        the bank. The transaction is currently being processed.
       </Text>
 
-      <Text style={{ ...paragraph, marginTop: 16 }}>Details are below:</Text>
+      <Text style={{ ...paragraph, marginTop: 16 }}>Payment details are below:</Text>
 
       <Block paddingTop={16} paddingBottom={16}>
         <Table
           rows={[
-            { label: "Amount", value: paymentAmount },
+            { label: "Amount", value: debitAmount },
             { label: "From", value: accountName, sub: accountMasked },
             { label: "To", value: beneficiaryName, sub: beneficiaryMasked },
             { label: "Reference ID", value: referenceId },
-            { label: "Date & time", value: dateTime },
           ]}
         />
       </Block>
 
-      <Text style={{ ...paragraph, marginTop: 0 }}>Thank you for banking with us.</Text>
+      <Text style={{ ...paragraph, marginTop: 0 }}>Thank you for choosing DK Bank.</Text>
 
       <Text style={{ ...paragraphDark, marginTop: 16 }}>Best regards,</Text>
       <Text style={{ ...paragraphDark, fontWeight: 600, marginTop: 2 }}>DK Bank Team</Text>
