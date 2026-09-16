@@ -11,8 +11,10 @@ import { Table } from "../../components/table.js";
  *
  * The one frame in the set with no status icon: the body goes straight from
  * the wordmark to the greeting, so `statusIconUrl` is deliberately omitted.
- * The summary card carries the signed amount and no date row — the payment
- * has no settlement timestamp yet.
+ *
+ * One deliberate divergence: the frame's summary card has no date row (the
+ * payment has no settlement timestamp yet), but the "Date & time" row is
+ * kept by request — it shows when the payment was submitted for processing.
  */
 export interface ApproverBankProcessingEmailProps {
   userName?: string;
@@ -25,6 +27,7 @@ export interface ApproverBankProcessingEmailProps {
   beneficiaryName?: string;
   beneficiaryMasked?: string;
   referenceId?: string;
+  dateTime?: string;
 }
 
 export default function ApproverBankProcessingEmail({
@@ -36,6 +39,7 @@ export default function ApproverBankProcessingEmail({
   beneficiaryName = "{beneficiary_name}",
   beneficiaryMasked = "***{beneficiary_last4}",
   referenceId = "{reference_id}",
+  dateTime = "{date_time}",
 }: ApproverBankProcessingEmailProps) {
   return (
     <EmailLayout>
@@ -57,6 +61,7 @@ export default function ApproverBankProcessingEmail({
             { label: "From", value: accountName, sub: accountMasked },
             { label: "To", value: beneficiaryName, sub: beneficiaryMasked },
             { label: "Reference ID", value: referenceId },
+            { label: "Date & time", value: dateTime },
           ]}
         />
       </Block>
