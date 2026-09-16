@@ -6,11 +6,8 @@ import { EmailLayout, paragraph, paragraphDark } from "../../components/layout.j
  * Applicant acknowledgement — the account opening application was received and
  * is now queued for the company's approvers.
  * The applicant-side counterpart to `application-pending-approver`.
- * Figma: DK.Notif › the applicant "pending review" frame — pending icon.
- *
- * NOTE: the Figma node id is not recorded here — the MCP connector was
- * unauthorised when this was written, so the frame was worked from a render
- * rather than read off the file. Fill the id in once Figma is reachable.
+ * Figma: DK.Notif › node 2464:3888, "corp-onboarding / pending-review-approver"
+ * (the frame name says approver; its copy is the applicant's) — pending icon.
  *
  * Deliberately propless: the frame carries no merge fields and no CTA. The
  * approvers are referred to generically ("your company's designated

@@ -4,14 +4,8 @@ import { EmailLayout, paragraph, paragraphDark } from "../../components/layout.j
 
 /**
  * Applicant notification — signed off by all approvers, in final processing.
- * Figma: DK.Notif › node 2464:4144, "Content" frame.
- *
- * UNVERIFIED against the frame — the Figma MCP was unreachable when this was
- * written. The copy is carried verbatim from the superseded node 1349:8215;
- * spacing and colour follow CONVENTIONS.md. Two judgement calls to re-check:
- * the body is split after "…final processing at DK Bank." (node 2464:3892 got
- * the same treatment for the same two-sentence shape), and the frame is
- * assumed to keep a status icon (node 2464:4339 dropped its off-spec one).
+ * Figma: DK.Notif › node 2464:4140, "corp-onboarding / approved-by-approver"
+ * — success icon; both sentences are one paragraph in the frame.
  */
 export interface ApplicationApprovedEmailProps {
 }
@@ -24,10 +18,8 @@ export default function ApplicationApprovedEmail({
 
       <Text style={{ ...paragraph, marginTop: 16 }}>
         Your account opening form has been signed off by all approvers and is now going through
-        final processing at DK Bank.
+        final processing at DK Bank. We will contact you once it&rsquo;s complete.
       </Text>
-
-      <Text style={{ ...paragraph, marginTop: 16 }}>We will contact you once it’s complete.</Text>
 
       <Text style={{ ...paragraph, marginTop: 16 }}>Thank you for choosing DK Bank.</Text>
 

@@ -12,7 +12,8 @@ import {
 
 /**
  * "Form Approved" — company KYC completed.
- * Figma: DK.Notif › Form Approved (node 1347:7090), "Email content" frame.
+ * Figma: DK.Notif › node 2456:3654, "corp-onboarding / KYC-complete" —
+ * success icon.
  */
 export interface KycCompletedEmailProps {
   companyName?: string;
