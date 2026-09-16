@@ -1,16 +1,15 @@
-import { Button as EmailButton } from "@react-email/components";
+import { Button as EmailButton, Img } from "@react-email/components";
 
-import { Block, textBase } from "./layout.js";
+import { Block, CDN, textBase } from "./layout.js";
+
+const ARROW_URL = `${CDN}/icon-arrow-right.png`; // 64×64, white on transparent
 
 /**
  * Figma "button-icon-right": 36px brand pill with a trailing arrow,
  * centred inside an "action" row with 8px vertical padding (+12px group gap).
  *
- * The trailing arrow is the text glyph U+2192, not an image. An image needs an
- * absolute URL to load in a mail client, and the arrow is the one asset not on
- * the S3 bucket — a relative `src` only ever resolved in a local browser
- * preview. Host `static/arrow-right.png` and swap this span back for an <Img>
- * if the vector is required.
+ * The trailing arrow is the hosted PNG drawn at 16px, per the Figma vector.
+ * Clients that block remote images fall back to the alt glyph U+2192.
  */
 export function Button({
   href,
@@ -27,7 +26,7 @@ export function Button({
             <td>
               <EmailButton href={href} style={button}>
                 <span style={buttonLabel}>{children}</span>
-                <span style={buttonArrow}>{"\u2192"}</span>
+                <Img src={ARROW_URL} alt={"\u2192"} width={16} height={16} style={buttonArrow} />
               </EmailButton>
             </td>
           </tr>
@@ -63,7 +62,6 @@ const buttonLabel: React.CSSProperties = {
 const buttonArrow: React.CSSProperties = {
   display: "inline-block",
   verticalAlign: "middle",
-  marginLeft: 6,
-  fontSize: 16,
-  lineHeight: "22px",
+  marginLeft: 4,
+  border: 0,
 };
