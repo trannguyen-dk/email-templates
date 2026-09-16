@@ -116,14 +116,14 @@ const valueCell: React.CSSProperties = {
  * Credit green for a positive amount. The one text colour in the project that
  * is not #262A2E, so it is deliberately scoped to this cell.
  *
- * UNVERIFIED: read off the frame by eye, not from Figma (the MCP connector was
- * unauthorised). Confirm the token before sending.
+ * Figma token `semantic/positive/emphasized` (frames 2464:14948, 2464:15517).
  */
 const creditValue: React.CSSProperties = {
   ...emphasis,
-  color: "#218358",
+  color: "#2a7e3b",
 };
 
+/** Figma `content/secondary` — the masked-account line under the value. */
 const subText: React.CSSProperties = {
   ...textBase,
   marginTop: 2,
@@ -131,5 +131,5 @@ const subText: React.CSSProperties = {
   fontWeight: 400,
   lineHeight: "22px",
   letterSpacing: "-0.084px",
-  color: "#262a2e",
+  color: "#60646c",
 };
