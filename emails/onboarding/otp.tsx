@@ -11,7 +11,7 @@ import {
 
 /**
  * One-time password for the DK Onboarding Portal.
- * Figma: DK.Notif › node 2307:2034, "Email content" frame.
+ * Figma: DK.Notif › node 2453:3325, "corp-onboarding / OTP".
  *
  * This frame has no status icon — the copy follows straight on from the logo.
  */
