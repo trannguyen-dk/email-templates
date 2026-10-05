@@ -28,6 +28,23 @@ local, referenced as `static/arrow-right.png` relative to each output. `export`
 copies `static/` next to every HTML file, so previews resolve it. To send these,
 host the arrow and update the `src` in `components/cta-button.tsx`.
 
+## Subjects
+
+The subject line is set by the sender, not the HTML. Each template's docblock
+carries its subject; the Bhutan Corporate-Onboarding-Portal set, from Figma
+file `p06bg93MnerHujJnq1osbQ`:
+
+| Template                                            | Subject                                                                 | Figma node   |
+| --------------------------------------------------- | ----------------------------------------------------------------------- | ------------ |
+| `onboarding/bhutan/company-profile-resubmission`    | Action Required: Resubmit the Company Profile - DK Bank Application     | `6009-13060` |
+| `onboarding/bhutan/document-resubmission`           | Action Required: Documents Needed - DK Bank Application                 | `6006-12588` |
+| `onboarding/bhutan/related-party-info-resubmission` | Action Required: Related Party Information Update - DK Bank Application | `6006-12662` |
+| `onboarding/bhutan/related-party-idv-submission`    | Please Verify Your Profile - DK Bank                                    | `6009-13349` |
+| `onboarding/bhutan/related-party-idv-resubmission`  | Action Required: Re-verify Your Profile – DK Bank Application           | `6009-13444` |
+
+The last subject uses an en dash (`–`) where the others use a hyphen; it is
+copied verbatim from the frame.
+
 ## Placeholders
 
 Every variable value is an optional prop with a placeholder-token default, so a

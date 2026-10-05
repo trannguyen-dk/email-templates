@@ -68,8 +68,10 @@ Most frames need no new components. Available from `components/`:
 | `heading`                              | 18px semibold                                                            |
 | `emphasis`                             | Inline `<strong>` weight                                                 |
 | `inlineLink`                           | Underlined mailto/link inside copy                                       |
+| `plainLink`                            | A link styled as body text, for addresses the frame draws unstyled       |
 | `textBase` / `fontStack` / `monoStack` | Building a new style                                                     |
 | `SUPPORT_EMAIL`                        | Support address                                                          |
+| `RFI_EMAIL`                            | Onboarding requests-for-information address (`rfi@dk.bt`)               |
 
 `EmailLayout` props worth knowing: `statusIconUrl` (omit for no icon),
 `iconSize` (default 64 — leave it alone; every template renders 64x64). That is
