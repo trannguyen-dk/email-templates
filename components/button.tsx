@@ -10,16 +10,22 @@ const ARROW_URL = `${CDN}/icon-arrow-right.png`; // 64×64, white on transparent
  *
  * The trailing arrow is the hosted PNG drawn at 16px, per the Figma vector.
  * Clients that block remote images fall back to the alt glyph U+2192.
+ *
+ * `spacing` is the gap above and below the pill. The default 20 is the DK.Notif
+ * action row; the Corporate-Onboarding-Portal frames drop the row and set the
+ * pill straight in the 16px body column, so those templates pass 16.
  */
 export function Button({
   href,
+  spacing = 20,
   children,
 }: {
   href: string;
-    children: React.ReactNode;
+  spacing?: number;
+  children: React.ReactNode;
 }) {
   return (
-    <Block paddingTop={20} paddingBottom={20}>
+    <Block paddingTop={spacing} paddingBottom={spacing}>
       <table role="presentation" cellPadding={0} cellSpacing={0} border={0} align="center">
         <tbody>
           <tr>

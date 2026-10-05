@@ -13,6 +13,9 @@ export const LOGO_URL = `${CDN}/logo-dkbank.png`; // 526×135
 
 export const SUPPORT_EMAIL = "business.care@dk.bt";
 
+/** Onboarding requests-for-information inbox, named in the resubmission / ID&V emails. */
+export const RFI_EMAIL = "rfi@dk.bt";
+
 /** Measurements shared by every frame. See CONVENTIONS.md § Spacing. */
 export const M = {
   /**
@@ -110,4 +113,13 @@ export const paragraphDark: React.CSSProperties = {
 export const inlineLink: React.CSSProperties = {
   color: "#262a2e",
   textDecoration: "underline",
+};
+
+/**
+ * A link that reads as body text, for addresses the frame draws unstyled. Set
+ * on the <a> so clients that auto-link a bare address don't restyle it blue.
+ */
+export const plainLink: React.CSSProperties = {
+  color: "#262a2e",
+  textDecoration: "none",
 };
