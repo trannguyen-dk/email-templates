@@ -1,0 +1,79 @@
+import { Link, Text } from "@react-email/components";
+
+import { Button } from "../../../components/button.js";
+import {
+  EmailLayout,
+  RFI_EMAIL,
+  paragraph,
+  paragraphDark,
+  plainLink,
+} from "../../../components/layout.js";
+
+/**
+ * Related-party notification — the reviewer has asked the related party to
+ * complete their identity verification (ID&V) again.
+ * The retry counterpart to `related-party-idv-submission`.
+ * Subject: "Action Required: Re-verify Your Profile – DK Bank Application"
+ * Figma: Corporate-Onboarding-Portal › node 6009:13444, "Related Party ID&V
+ * resubmission - Email Sheet" (desktop 6006:12349, mobile 6006:12438) — pending icon.
+ *
+ * The subject's en dash is verbatim from the frame; the other onboarding
+ * subjects use a hyphen.
+ */
+export interface RelatedPartyIdvResubmissionEmailProps {
+  relatedPartyName?: string;
+  companyName?: string;
+  /** The reviewer's note, rendered verbatim after "Reason:". */
+  reason?: string;
+  /** The related party's personal ID&V link. */
+  verificationUrl?: string;
+  rfiEmail?: string;
+}
+
+export default function RelatedPartyIdvResubmissionEmail({
+  relatedPartyName = "{Related Party Name}",
+  companyName = "{Company Name}",
+  reason = "{Reason}",
+  verificationUrl = "{url}",
+  rfiEmail = RFI_EMAIL,
+}: RelatedPartyIdvResubmissionEmailProps) {
+  return (
+    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-pending-v2.png">
+      <Text style={{ ...paragraph, marginTop: 16 }}>Dear {relatedPartyName},</Text>
+
+      <Text style={{ ...paragraph, marginTop: 16 }}>
+        We were unable to complete your identity verification for {companyName}&rsquo;s
+        application with DK Bank.
+      </Text>
+
+      <Text style={{ ...paragraph, marginTop: 16 }}>Reason: {reason}</Text>
+
+      <Text style={{ ...paragraph, marginTop: 16 }}>
+        Please use the link below to complete the verification again.
+      </Text>
+
+      <Button href={verificationUrl} spacing={16}>
+        Re-verify My Identity
+      </Button>
+
+      <Text style={{ ...paragraph, marginTop: 0 }}>
+        This link is personal to you and should not be shared with anyone else.
+      </Text>
+
+      <Text style={{ ...paragraph, marginTop: 16 }}>
+        If you have any questions, please contact us at{" "}
+        <Link href={`mailto:${rfiEmail}`} style={plainLink}>
+          {rfiEmail}
+        </Link>
+        .
+      </Text>
+
+      <Text style={{ ...paragraphDark, marginTop: 16 }}>Best regards,</Text>
+      <Text style={{ ...paragraphDark, fontWeight: 600, marginTop: 2 }}>
+        DK Bank Onboarding Team
+      </Text>
+    </EmailLayout>
+  );
+}
+
+RelatedPartyIdvResubmissionEmail.PreviewProps = {} satisfies RelatedPartyIdvResubmissionEmailProps;

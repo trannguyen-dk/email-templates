@@ -1,12 +1,12 @@
 /**
  * Renders every template in ../emails to static HTML in ../out, preserving the
- * folder grouping (e.g. emails/onboarding/x.tsx -> out/onboarding/x.html).
+ * folder grouping (e.g. emails/onboarding/x.tsx -> out/onboarding/x.html,
+ * emails/onboarding/bhutan/y.tsx -> out/onboarding/bhutan/y.html).
  *
  *   pnpm export
  *
- * The only local asset is the CTA arrow. Output HTML points at the repo's single
- * `static/arrow-right.png` via `../../`, so nothing is copied — which assumes an
- * output path of `out/<flow>/<name>.html`. Every other image is an absolute URL.
+ * Every image, the CTA arrow included, is an absolute URL, so outputs do not
+ * depend on their folder depth and nothing is copied next to them.
  */
 import { render } from "@react-email/components";
 import { mkdirSync, writeFileSync } from "node:fs";
@@ -27,9 +27,14 @@ import ApplicationPendingApplicantEmail from "../emails/onboarding/application-p
 import ApplicationPendingApproverEmail from "../emails/onboarding/application-pending-approver.js";
 import ApplicationReturnedApplicantEmail from "../emails/onboarding/application-returned-applicant.js";
 import ApplicationReturnedApproverEmail from "../emails/onboarding/application-returned-approver.js";
+import CompanyProfileResubmissionEmail from "../emails/onboarding/bhutan/company-profile-resubmission.js";
+import DocumentResubmissionEmail from "../emails/onboarding/bhutan/document-resubmission.js";
 import KycCompletedEmail from "../emails/onboarding/kyc-completed.js";
 import LoginSuccessEmail from "../emails/onboarding/login-success.js";
 import OtpEmail from "../emails/onboarding/otp.js";
+import RelatedPartyIdvResubmissionEmail from "../emails/onboarding/bhutan/related-party-idv-resubmission.js";
+import RelatedPartyIdvSubmissionEmail from "../emails/onboarding/bhutan/related-party-idv-submission.js";
+import RelatedPartyInfoResubmissionEmail from "../emails/onboarding/bhutan/related-party-info-resubmission.js";
 import OpenAdditionalMcaEmail from "../emails/account/open-additional-MCA.js";
 import FailedRepaymentEmail from "../emails/loan/failed-repayment.js";
 import OverdueReminderEmail from "../emails/loan/overdue-reminder.js";
@@ -87,6 +92,23 @@ const templates = [
   },
   { name: "onboarding/otp", element: <OtpEmail /> },
   { name: "onboarding/login-success", element: <LoginSuccessEmail /> },
+  {
+    name: "onboarding/bhutan/company-profile-resubmission",
+    element: <CompanyProfileResubmissionEmail />,
+  },
+  { name: "onboarding/bhutan/document-resubmission", element: <DocumentResubmissionEmail /> },
+  {
+    name: "onboarding/bhutan/related-party-info-resubmission",
+    element: <RelatedPartyInfoResubmissionEmail />,
+  },
+  {
+    name: "onboarding/bhutan/related-party-idv-submission",
+    element: <RelatedPartyIdvSubmissionEmail />,
+  },
+  {
+    name: "onboarding/bhutan/related-party-idv-resubmission",
+    element: <RelatedPartyIdvResubmissionEmail />,
+  },
   {
     name: "account/open-additional-MCA",
     element: <OpenAdditionalMcaEmail />,
