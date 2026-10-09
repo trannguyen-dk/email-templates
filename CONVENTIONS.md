@@ -45,7 +45,9 @@ otherwise the variable font clamps and clients synthesise the bold.
 
 **All text content is `#262A2E`** — body copy, headings, the sign-off pair, and
 inline body links alike. There is no second, darker tone: `#1D2A3D` was
-retired. Inline body links keep the underline, not a different colour.
+retired. Inline body links keep the underline, not a different colour —
+unless the frame draws the address as plain body text, as the Bhutan
+resubmission / ID&V frames do with `rfi@dk.bt`; use `plainLink` there.
 
 The only text that is *not* `#262A2E` is footer chrome (`#60646C` for the note
 and legal block, `#56606C` for Help / Privacy Policy) and the CTA button label,
@@ -149,6 +151,7 @@ uses — Title Case for prose (`{Company Name}`, `{User's Name}`,
 | --------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | Footer Help           | `mailto:business.care@dk.bt` — derived from `SUPPORT_EMAIL`, never repeated                                       |
 | Footer Privacy Policy | `https://www.dk.bt/privacy-policy`                                                                                |
+| Onboarding RFI inbox  | `mailto:rfi@dk.bt` — `RFI_EMAIL`, for the resubmission / ID&V emails                                              |
 | Onboarding portal     | `https://onboarding.uat.digitalkidu.bt/auth/login`                                                                |
 | Banking portal        | `https://cibs-gmc.uat.digitalkidu.bt/uatonebank/66666666_default/h5/53000001-1.0.46.0/html/www/index.html#/login` |
 
@@ -165,6 +168,26 @@ One template per Figma frame. Where two frames carry the same copy at
 different widths, build the phone frame only — the layout is fluid
 (`max-width: 600px`, collapsing on narrow screens), so one render serves both.
 Never duplicate copy across two templates.
+
+**Templates are grouped by flow, then by market.** A template used by every
+market lives in the flow folder (`emails/onboarding/`); one used only by the
+Bhutan system lives in that flow's `bhutan/` subfolder
+(`emails/onboarding/bhutan/`), and its output mirrors the path
+(`out/onboarding/bhutan/`). When a Bhutan-only template becomes shared, move it
+up to the flow folder rather than copying it — and tell the sender, because its
+output path changes. A shared template whose values differ by market stays one
+source with a second export entry passing the other market's props.
+
+**Every email uses the same shell, Bhutan included.** There is no per-market
+layout. The Bhutan frames (and the current DK.Notif ones) are drawn on a newer
+Figma `email-body` / `email-footer` component than the shell was built from: a
+98x25 logo centred in a 40px slot with a 20px gap below it (~28px from the
+wordmark to the first line when there is no status icon, against our 16),
+`#000509` @ 89% footer rules, 20px above Help / Privacy Policy, a `#1D2A3D`
+sign-off and a 640px desktop panel. The Bhutan frames' footer note also stops
+at "Please do not reply to this email." without the support-address sentence.
+The shell deliberately keeps its current values so all emails stay identical;
+moving it to the newer component is a separate, all-templates change.
 
 Shared shell is split by section, over a common foundation:
 

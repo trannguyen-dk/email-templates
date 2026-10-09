@@ -67,6 +67,7 @@ export {
   CDN,
   LOGO_URL,
   M,
+  RFI_EMAIL,
   SUPPORT_EMAIL,
   emphasis,
   fontStack,
@@ -75,6 +76,7 @@ export {
   monoStack,
   paragraph,
   paragraphDark,
+  plainLink,
   textBase,
 } from "./email-base.js";
 
