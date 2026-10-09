@@ -4,6 +4,7 @@ import { Button } from "../../../components/button.js";
 import {
   EmailLayout,
   RFI_EMAIL,
+  emphasis,
   paragraph,
   paragraphDark,
   plainLink,
@@ -13,34 +14,37 @@ import {
  * Applicant notification — the reviewer has asked for one or more uploaded
  * documents to be resubmitted.
  * Subject: "Action Required: Documents Needed - DK Bank Application"
- * Figma: Corporate-Onboarding-Portal › node 6006:12588, "email / Document
- * resubmission / desktop" — pending icon.
+ * Figma: DK.Notif › "Notif - Bhutan Corp onboarding" (3209:4290), node
+ * 3209:5231 — no status icon.
+ *
+ * The document list and "Reason:" are one paragraph on two lines.
  */
 export interface DocumentResubmissionEmailProps {
-  userName?: string;
+  /** The applicant's first name. */
+  firstName?: string;
   companyName?: string;
   /**
-   * The document(s) to resubmit, already joined for display, e.g. "Board
+   * The rejected document type(s), already joined for display, e.g. "Board
    * Resolution, Account Mandate or Power of Attorney".
    */
   documentNames?: string;
-  /** The reviewer's note, rendered verbatim after "Reason:". */
+  /** The reviewer's note, rendered in semibold after "Reason:". */
   reason?: string;
   portalUrl?: string;
   rfiEmail?: string;
 }
 
 export default function DocumentResubmissionEmail({
-  userName = "{User's Name}",
+  firstName = "{First Name}",
   companyName = "{Company Name}",
-  documentNames = "{Document Names}",
-  reason = "{Reason}",
+  documentNames = "{List of Rejected Document Types}",
+  reason = "{Resubmission Reason}",
   portalUrl = "https://onboarding.uat.digitalkidu.bt/auth/login",
   rfiEmail = RFI_EMAIL,
 }: DocumentResubmissionEmailProps) {
   return (
-    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-pending-v2.png">
-      <Text style={{ ...paragraph, marginTop: 16 }}>Dear {userName},</Text>
+    <EmailLayout>
+      <Text style={{ ...paragraph, marginTop: 16 }}>Dear {firstName},</Text>
 
       <Text style={{ ...paragraph, marginTop: 16 }}>
         Thank you for submitting {companyName}&rsquo;s application to open a corporate account with
@@ -52,16 +56,18 @@ export default function DocumentResubmissionEmail({
         require resubmission:
       </Text>
 
-      <Text style={{ ...paragraph, marginTop: 16 }}>{documentNames}</Text>
-
-      <Text style={{ ...paragraph, marginTop: 16 }}>Reason: {reason}</Text>
+      <Text style={{ ...paragraph, marginTop: 16 }}>
+        {documentNames}
+        <br />
+        Reason: <strong style={emphasis}>{reason}</strong>
+      </Text>
 
       <Text style={{ ...paragraph, marginTop: 16 }}>
         Please log back in to the onboarding portal to re-upload the required document(s).
       </Text>
 
       <Button href={portalUrl} spacing={16}>
-        Return to Application
+        Return to application
       </Button>
 
       <Text style={{ ...paragraph, marginTop: 0 }}>

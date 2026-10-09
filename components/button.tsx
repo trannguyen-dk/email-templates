@@ -12,7 +12,7 @@ const ARROW_URL = `${CDN}/icon-arrow-right.png`; // 64×64, white on transparent
  * Clients that block remote images fall back to the alt glyph U+2192.
  *
  * `spacing` is the gap above and below the pill. The default 20 is the DK.Notif
- * action row; the Corporate-Onboarding-Portal frames drop the row and set the
+ * action row; the Bhutan corporate onboarding frames drop the row and set the
  * pill straight in the 16px body column, so those templates pass 16.
  */
 export function Button({

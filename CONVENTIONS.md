@@ -181,9 +181,12 @@ source with a second export entry passing the other market's props.
 **Every email uses the same shell, Bhutan included.** There is no per-market
 layout. The Bhutan frames (and the current DK.Notif ones) are drawn on a newer
 Figma `email-body` / `email-footer` component than the shell was built from: a
-98x25 logo centred in a 40px slot, `#000509` @ 89% footer rules, 20px above
-Help / Privacy Policy, a `#1D2A3D` sign-off and a 640px desktop panel. The
-shell deliberately keeps its current values so all emails stay identical;
+98x25 logo centred in a 40px slot with a 20px gap below it (~28px from the
+wordmark to the first line when there is no status icon, against our 16),
+`#000509` @ 89% footer rules, 20px above Help / Privacy Policy, a `#1D2A3D`
+sign-off and a 640px desktop panel. The Bhutan frames' footer note also stops
+at "Please do not reply to this email." without the support-address sentence.
+The shell deliberately keeps its current values so all emails stay identical;
 moving it to the newer component is a separate, all-templates change.
 
 Shared shell is split by section, over a common foundation:

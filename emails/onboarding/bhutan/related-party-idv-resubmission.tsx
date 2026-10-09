@@ -4,6 +4,7 @@ import { Button } from "../../../components/button.js";
 import {
   EmailLayout,
   RFI_EMAIL,
+  emphasis,
   paragraph,
   paragraphDark,
   plainLink,
@@ -14,16 +15,17 @@ import {
  * complete their identity verification (ID&V) again.
  * The retry counterpart to `related-party-idv-submission`.
  * Subject: "Action Required: Re-verify Your Profile – DK Bank Application"
- * Figma: Corporate-Onboarding-Portal › node 6009:13444, "Related Party ID&V
- * resubmission - Email Sheet" (desktop 6006:12349, mobile 6006:12438) — pending icon.
+ * Figma: DK.Notif › "Notif - Bhutan Corp onboarding" (3209:4290), node
+ * 3209:5596 — no status icon.
  *
  * The subject's en dash is verbatim from the frame; the other onboarding
  * subjects use a hyphen.
  */
 export interface RelatedPartyIdvResubmissionEmailProps {
-  relatedPartyName?: string;
+  /** The related party's first name. */
+  firstName?: string;
   companyName?: string;
-  /** The reviewer's note, rendered verbatim after "Reason:". */
+  /** The reviewer's note, rendered in semibold after "Reason:". */
   reason?: string;
   /** The related party's personal ID&V link. */
   verificationUrl?: string;
@@ -31,29 +33,31 @@ export interface RelatedPartyIdvResubmissionEmailProps {
 }
 
 export default function RelatedPartyIdvResubmissionEmail({
-  relatedPartyName = "{Related Party Name}",
+  firstName = "{First Name}",
   companyName = "{Company Name}",
-  reason = "{Reason}",
+  reason = "{Resubmission Reason}",
   verificationUrl = "{url}",
   rfiEmail = RFI_EMAIL,
 }: RelatedPartyIdvResubmissionEmailProps) {
   return (
-    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-pending-v2.png">
-      <Text style={{ ...paragraph, marginTop: 16 }}>Dear {relatedPartyName},</Text>
+    <EmailLayout>
+      <Text style={{ ...paragraph, marginTop: 16 }}>Dear {firstName},</Text>
 
       <Text style={{ ...paragraph, marginTop: 16 }}>
         We were unable to complete your identity verification for {companyName}&rsquo;s
         application with DK Bank.
       </Text>
 
-      <Text style={{ ...paragraph, marginTop: 16 }}>Reason: {reason}</Text>
+      <Text style={{ ...paragraph, marginTop: 16 }}>
+        Reason: <strong style={emphasis}>{reason}</strong>
+      </Text>
 
       <Text style={{ ...paragraph, marginTop: 16 }}>
         Please use the link below to complete the verification again.
       </Text>
 
       <Button href={verificationUrl} spacing={16}>
-        Re-verify My Identity
+        Re-verify my identity
       </Button>
 
       <Text style={{ ...paragraph, marginTop: 0 }}>

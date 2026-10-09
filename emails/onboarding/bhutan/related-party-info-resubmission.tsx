@@ -4,6 +4,7 @@ import { Button } from "../../../components/button.js";
 import {
   EmailLayout,
   RFI_EMAIL,
+  emphasis,
   paragraph,
   paragraphDark,
   plainLink,
@@ -13,28 +14,29 @@ import {
  * Applicant notification — the reviewer has asked for the related party
  * information on the application to be updated.
  * Subject: "Action Required: Related Party Information Update - DK Bank Application"
- * Figma: Corporate-Onboarding-Portal › node 6006:12662, "email / Related Party
- * info resubmission / desktop" — pending icon.
+ * Figma: DK.Notif › "Notif - Bhutan Corp onboarding" (3209:4290), node
+ * 3209:5327 — no status icon.
  */
 export interface RelatedPartyInfoResubmissionEmailProps {
-  userName?: string;
+  /** The applicant's first name. */
+  firstName?: string;
   companyName?: string;
-  /** The reviewer's note, rendered verbatim after "Reason:". */
+  /** The reviewer's note, rendered in semibold after "Reason:". */
   reason?: string;
   portalUrl?: string;
   rfiEmail?: string;
 }
 
 export default function RelatedPartyInfoResubmissionEmail({
-  userName = "{User's Name}",
+  firstName = "{First Name}",
   companyName = "{Company Name}",
-  reason = "{Reason}",
+  reason = "{Resubmission Reason}",
   portalUrl = "https://onboarding.uat.digitalkidu.bt/auth/login",
   rfiEmail = RFI_EMAIL,
 }: RelatedPartyInfoResubmissionEmailProps) {
   return (
-    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-pending-v2.png">
-      <Text style={{ ...paragraph, marginTop: 16 }}>Dear {userName},</Text>
+    <EmailLayout>
+      <Text style={{ ...paragraph, marginTop: 16 }}>Dear {firstName},</Text>
 
       <Text style={{ ...paragraph, marginTop: 16 }}>
         Thank you for submitting {companyName}&rsquo;s application to open a corporate account with
@@ -46,14 +48,16 @@ export default function RelatedPartyInfoResubmissionEmail({
         details require your attention.
       </Text>
 
-      <Text style={{ ...paragraph, marginTop: 16 }}>Reason: {reason}</Text>
+      <Text style={{ ...paragraph, marginTop: 16 }}>
+        Reason: <strong style={emphasis}>{reason}</strong>
+      </Text>
 
       <Text style={{ ...paragraph, marginTop: 16 }}>
         Please log back in to the onboarding portal to review and update the required information.
       </Text>
 
       <Button href={portalUrl} spacing={16}>
-        Return to Application
+        Return to application
       </Button>
 
       <Text style={{ ...paragraph, marginTop: 0 }}>

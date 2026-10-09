@@ -13,14 +13,15 @@ import {
  * Related-party notification — sent to each related party listed on the
  * application to start their identity verification (ID&V).
  * Subject: "Please Verify Your Profile - DK Bank"
- * Figma: Corporate-Onboarding-Portal › node 6009:13349, "Related Party ID&V
- * Submission - Email Sheet" (desktop 6006:12171, mobile 6006:12275) — pending icon.
+ * Figma: DK.Notif › "Notif - Bhutan Corp onboarding" (3209:4290), node
+ * 3209:5418 — no status icon.
  *
  * Addressed to the related party, not the applicant. The CTA is their personal
  * verification link, so it is a per-record `{url}` token rather than the portal.
  */
 export interface RelatedPartyIdvSubmissionEmailProps {
-  relatedPartyName?: string;
+  /** The related party's first name. */
+  firstName?: string;
   companyName?: string;
   /** The related party's personal ID&V link. */
   verificationUrl?: string;
@@ -28,14 +29,14 @@ export interface RelatedPartyIdvSubmissionEmailProps {
 }
 
 export default function RelatedPartyIdvSubmissionEmail({
-  relatedPartyName = "{Related Party Name}",
+  firstName = "{First Name}",
   companyName = "{Company Name}",
   verificationUrl = "{url}",
   rfiEmail = RFI_EMAIL,
 }: RelatedPartyIdvSubmissionEmailProps) {
   return (
-    <EmailLayout statusIconUrl="https://notification-email-s3.s3.ap-southeast-1.amazonaws.com/icon-pending-v2.png">
-      <Text style={{ ...paragraph, marginTop: 16 }}>Dear {relatedPartyName},</Text>
+    <EmailLayout>
+      <Text style={{ ...paragraph, marginTop: 16 }}>Dear {firstName},</Text>
 
       <Text style={{ ...paragraph, marginTop: 16 }}>
         {companyName} has submitted an application to open a corporate account with DK Bank, and
